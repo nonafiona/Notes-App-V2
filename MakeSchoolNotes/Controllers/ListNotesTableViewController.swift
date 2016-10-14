@@ -11,7 +11,7 @@ import UIKit
 class ListNotesTableViewController: UITableViewController {
     
     // references our Note model
-    var notes = [Note]() {
+    var notes: [Note] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -20,6 +20,7 @@ class ListNotesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        notes = CoreDataHelper.retrieveNotes ()
     }
     
     // 1
@@ -84,9 +85,7 @@ class ListNotesTableViewController: UITableViewController {
     }
     
     @IBAction func unwindToListNotesViewController(_ segue: UIStoryboardSegue) {
-        
-        // for now, simply defining the method is sufficient.
-        // we'll add code later
+        self.notes = CoreDataHelper.retrieveNotes()
         
     }
     
