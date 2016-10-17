@@ -45,7 +45,7 @@ class ListNotesTableViewController: UITableViewController {
         cell.noteTitleLabel.text = note.title
         
         // 5 
-        cell.noteModificationTimeLabel.text = note.modificationTime.convertToString()
+        cell.noteModificationTimeLabel.text = note.modificationTime?.convertToString()
         
         return cell
 
@@ -78,9 +78,9 @@ class ListNotesTableViewController: UITableViewController {
         // 2
         if editingStyle == .delete {
             // 3
-            notes.remove(at: indexPath.row)
+            CoreDataHelper.delete(note: notes[indexPath.row])
             // 4
-            tableView.reloadData()
+            notes = CoreDataHelper.retrieveNotes()
         }
     }
     

@@ -30,16 +30,18 @@ class DisplayNoteViewController: UIViewController {
                 // 2
                 note.title = noteTitleTextField.text ?? ""
                 note.content = noteContentTextView.text ?? ""
+                note.modificationTime = Date()
                 
-                listNotesTableViewController.tableView.reloadData()
+                CoreDataHelper.saveNote()
                 // 2
                 
             } else {
-                let newNote = Note()
-                newNote.title = noteTitleTextField.text ?? ""
-                newNote.content = noteContentTextView.text ?? ""
-                newNote.modificationTime = Date()
-                listNotesTableViewController.notes.append(newNote)
+                let note = Note()
+                note.title = noteTitleTextField.text ?? ""
+                note.content = noteContentTextView.text ?? ""
+                note.modificationTime = Date()
+
+                CoreDataHelper.addNote(note: note)
             }
         }
         
